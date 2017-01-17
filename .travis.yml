@@ -1,0 +1,19 @@
+language: go
+
+go:
+  - 1.7
+  - tip
+
+matrix:
+  allow_failure:
+    - go: tip
+
+install:
+  - rm -rf $GOPATH/src/github.com/croupiers/go-croupier
+  - mkdir -p $GOPATH/src/github.com/croupiers/go-croupier
+  - ln -s $PWD $GOPATH/src/github.com/croupiers/go-croupier
+  - cd $GOPATH/src/github.com/croupiers/go-croupier
+  - go get -v -t ./...
+
+script:
+  - make test
